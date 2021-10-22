@@ -562,8 +562,11 @@ if __name__ == '_main_':
 
     load_checkpoint = False
 
-    agent1 = agent(gamma = .99, epsilon = 1.0, aplha = .00025, input_dims = (10000, 1, 10), n_actions = 2, mem_size = 80000, batch_size = 4125)
+    #agent1 = agent(gamma = .99, epsilon = 1.0, aplha = .00025, input_dims = (10000, 1, 10), n_actions = 2, mem_size = 80000, batch_size = 4125)
+    agent1 = agent(gamma = .99, epsilon = 1.0, aplha = .00025, input_dims = starting_data, n_actions = 2, mem_size = 80000, batch_size = 4125)
 
+    
+    
     if load_checkpoint:
         agent1.load_models()
 
