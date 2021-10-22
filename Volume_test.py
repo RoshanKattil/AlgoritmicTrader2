@@ -52,7 +52,7 @@ from tensorflow.python.ops.math_ops import reduce_mean
 #adjust input dims from 500 to max values of what data is being used
 class DeepQlearning(object):
 
-    def _init_(self, lr, n_actions, name , fcl_dims= 10000, input_dims=(500,4125), chkpt_dir = 'E:'):
+    def _init_(self, lr, n_actions, name , fcl_dims= 10000, input_dims=(10000,4125), chkpt_dir = 'E:'):
 
             self.lr = lr
             self.name = name
@@ -453,7 +453,6 @@ for i in range(1,3)
     for x in range(1,13)
      temp_weekday = CSV_weekday(i,x)
      volume.append(CSV_volume(i,x))
-     hour.append(CSV_hour(i,x))
      minute.append(CSV_minute(i,x))
 
 for i in temp_weekday:
@@ -511,15 +510,21 @@ for i in weekday:
         
  
 #starting_data2 = Elastic_net(volume), time, alphas)
-    
+
+
+
+starting_data = []
+
+    for i in range(0,16501):
+        starting_data.append(time[i], volume[i])
  
 #Deep Q-Learning
 
-x1 = starting_data1
+x1 = starting_data
 x2 = x1[0:16500]
 
 def preprocess_data(data):
-    return data.reshape(data, (1650,10))
+    return data.reshape(data, (4125,10))
 
 def stack_data(stacked_data, x, buffer):
 
@@ -540,8 +545,20 @@ stacked_data = x2
     
 
 if __name__ == '_main_':
+    
+    
+    
+    
+    
+    #use custom env
+    
+    
 
     env = gym.make('test1')
+    
+    
+    
+    
 
     load_checkpoint = False
 
@@ -551,8 +568,8 @@ if __name__ == '_main_':
         agent1.load_models()
 
     scores = []
-    numGames = 1000
-    stack_size = 1650
+    numGames = 10000
+    stack_size = 4125
     score = 0
 
 
@@ -585,7 +602,7 @@ print('Done with 1')
 
 obversvation = x2
 
-for i in range(0,1000):
+for i in range(0,10000):
     numGames.append(i)
 
 for i in numGames:
@@ -633,6 +650,3 @@ for x1 in get_time:
 
 for x1 in get_volume:
     volume_normalized = get_volume[x1]
-
-
-
