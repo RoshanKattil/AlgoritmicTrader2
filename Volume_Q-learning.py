@@ -109,7 +109,7 @@ class DeepQlearning(object):
  #adjust 500 to what im training max size
 
 class agent(object):
-    def  _init_(self, alpha, gamma, mem_size, n_actions, epsilon, batch_size, replace_target = 5000, input_dims = (500, 4125,10), q_next= 'tmp/q_next', q_eval = 'tmp/q_eval'):
+    def  _init_(self, alpha, gamma, mem_size, n_actions, epsilon, batch_size, replace_target = 5000, input_dims = (10000, 4125,10), q_next= 'tmp/q_next', q_eval = 'tmp/q_eval'):
 
         self.n_actions = n_actions
 
